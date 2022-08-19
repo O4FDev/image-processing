@@ -36,9 +36,9 @@ Install ShadowMirror's requirements with pip
     
 ## FAQ
 
-#### Placeholder question
+#### Curious what frameworks you used?
 
-Placeholder answer
+I used Open-CV for the image processing and Numpy for the array manipulation. 
 
 #### Placeholder question 2 
 
