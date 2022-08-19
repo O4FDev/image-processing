@@ -42,8 +42,8 @@ def convertImage():
             # Append the coordinates of the subgroup to the list.
             sub_group_coords.append((x * sub_group_size, y * sub_group_size))
             # Depending on the y and x coordinates, the colour will be different starting from the top left.
-            # colours.append((x * sub_group_size, y * sub_group_size, brightness))
-            colours.append(np.array([brightness, brightness, brightness]))
+            colours.append((x * sub_group_size, y * sub_group_size, brightness))
+            # colours.append(np.array([brightness, brightness, brightness]))
 
 
 
