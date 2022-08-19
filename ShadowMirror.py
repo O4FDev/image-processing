@@ -2,6 +2,7 @@ from random import randint
 import cv2
 import numpy as np
 
+
 def takePicture():
     """
     @requires(Camera input)
@@ -51,7 +52,8 @@ def create_new_image(img, sub_group_radius, sub_group_coords, colours):
         cv2.circle(new_img, sub_group_coords[i], radius, colours[i], -1)
     return new_img
 
-def convertImage(): 
+
+def convertImage():
     """
     Apply a dot filter to the image.
     """
@@ -59,9 +61,11 @@ def convertImage():
     img = takePicture()
     # img = cv2.imread("turing.jpeg")
 
-    sub_group_radius, sub_group_coords, colours = calculate_processed_values(img)
+    sub_group_radius, sub_group_coords, colours = calculate_processed_values(
+        img)
 
-    new_img = create_new_image(img, sub_group_radius, sub_group_coords, colours)
+    new_img = create_new_image(
+        img, sub_group_radius, sub_group_coords, colours)
 
     # Save the new image.
     cv2.imwrite('new_image' + str(randint(1, 1000000000000)) + '.jpg', new_img)
