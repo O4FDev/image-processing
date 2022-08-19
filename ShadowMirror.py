@@ -12,14 +12,8 @@ def takePicture():
     img = cv2.resize(img, (600, 600))
     return img
 
-def convertImage(): 
-    """
-    Apply a dot filter to the image.
-    """
 
-    img = takePicture()
-
-    # img = cv2.imread("turing.jpeg")
+def calculate_processed_values(img):
     sub_group_size = 10
     sub_group_total_y = img.shape[0] // sub_group_size
     sub_group_total_x = img.shape[1] // sub_group_size
@@ -42,8 +36,20 @@ def convertImage():
             # Append the coordinates of the subgroup to the list.
             sub_group_coords.append((x * sub_group_size, y * sub_group_size))
             # Depending on the y and x coordinates, the colour will be different starting from the top left.
-            colours.append((x * sub_group_size, y * sub_group_size, brightness))
+            colours.append(
+                (x * sub_group_size, y * sub_group_size, brightness))
             # colours.append(np.array([brightness, brightness, brightness]))
+    return sub_group_radius, sub_group_coords, colours
+
+def convertImage(): 
+    """
+    Apply a dot filter to the image.
+    """
+
+    img = takePicture()
+
+    # img = cv2.imread("turing.jpeg")
+    sub_group_radius, sub_group_coords, colours = calculate_processed_values(img)
 
 
 
@@ -59,6 +65,5 @@ def convertImage():
 
     # Save the new image.
     cv2.imwrite('new_image' + str(randint(1, 1000000000000)) + '.jpg', new_img)
-
 
 convertImage()
