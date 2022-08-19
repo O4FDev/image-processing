@@ -1,4 +1,3 @@
-
 # Image Processing
 
 An image-processing project to group pixels of images and create cool effects!
@@ -19,9 +18,6 @@ An image-processing project to group pixels of images and create cool effects!
 Contributions are always welcome!
 
 See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
-
 
 ## Deployment
 
