@@ -1,17 +1,23 @@
-from random import randint, random
+from random import randint
 import cv2
 import numpy as np
 
-def convertImage(): 
+def takePicture():
     """
     @requires(Camera input)
-    Apply a dot filter to the image.
+    Take a picture with the camera input.
     """
-
-    # take a picture with the camera input and use cv2 to read it.
     cap = cv2.VideoCapture(0)
     ret, img = cap.read()
     img = cv2.resize(img, (600, 600))
+    return img
+
+def convertImage(): 
+    """
+    Apply a dot filter to the image.
+    """
+
+    img = takePicture()
 
     # img = cv2.imread("turing.jpeg")
     sub_group_size = 10
@@ -36,8 +42,8 @@ def convertImage():
             # Append the coordinates of the subgroup to the list.
             sub_group_coords.append((x * sub_group_size, y * sub_group_size))
             # Depending on the y and x coordinates, the colour will be different starting from the top left.
-            colours.append((x * sub_group_size, y * sub_group_size, brightness))
-            # colours.append(np.array([brightness, brightness, brightness]))
+            # colours.append((x * sub_group_size, y * sub_group_size, brightness))
+            colours.append(np.array([brightness, brightness, brightness]))
 
 
 
@@ -52,7 +58,7 @@ def convertImage():
 
 
     # Save the new image.
-    cv2.imwrite('new_image_' + str(randint(1, 1000000000000)) + '.jpg', new_img)
+    cv2.imwrite('new_image' + str(randint(1, 1000000000000)) + '.jpg', new_img)
 
 
 convertImage()
