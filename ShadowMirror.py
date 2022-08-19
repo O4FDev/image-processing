@@ -41,29 +41,30 @@ def calculate_processed_values(img):
             # colours.append(np.array([brightness, brightness, brightness]))
     return sub_group_radius, sub_group_coords, colours
 
-def convertImage(): 
-    """
-    Apply a dot filter to the image.
-    """
 
-    img = takePicture()
-
-    # img = cv2.imread("turing.jpeg")
-    sub_group_radius, sub_group_coords, colours = calculate_processed_values(img)
-
-
-
-
-
+def create_new_image(img, sub_group_radius, sub_group_coords, colours):
     new_img = np.zeros((img.shape[0], img.shape[1], 3), np.uint8)
     for i in range(len(sub_group_radius)):
         # Convert radius to an int
         radius = int(sub_group_radius[i] * img.shape[0])
         # Draw a circle at the coordinates of the subgroup
         cv2.circle(new_img, sub_group_coords[i], radius, colours[i], -1)
+    return new_img
 
+def convertImage(): 
+    """
+    Apply a dot filter to the image.
+    """
+
+    img = takePicture()
+    # img = cv2.imread("turing.jpeg")
+
+    sub_group_radius, sub_group_coords, colours = calculate_processed_values(img)
+
+    new_img = create_new_image(img, sub_group_radius, sub_group_coords, colours)
 
     # Save the new image.
     cv2.imwrite('new_image' + str(randint(1, 1000000000000)) + '.jpg', new_img)
+
 
 convertImage()
